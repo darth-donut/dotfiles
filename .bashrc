@@ -151,6 +151,5 @@ export PS1='\u \[\033[01;32m\][\W]\[\033[m\]\[\033[01;32m\]$(__git_ps1)\[\033[m\
 export PATH="/home/jiahong/.cabal/bin:$PATH"
 
 # cuda path
-# export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
-# export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
-#                              ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export PATH=/usr/local/cuda-9.1/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-9.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
