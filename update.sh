@@ -1,14 +1,20 @@
 #!/bin/bash
 
-cp ~/.bash_aliases .
-echo "Updated .bash_aliases"
-cp ~/.bashrc .
-echo "Updated .bashrc"
-cp ~/config .
-echo "Updated config"
-cp ~/i3blocks.conf .
-echo "Updated i3blocks.conf"
-cp ~/.tmux.conf .
-echo "Updated .tmux.conf"
-cp ~/.vimrc .
-echo "Updated .vimrc"
+if cp ~/.bash_aliases .; then
+    echo "Updated .bash_aliases"
+fi
+if cp ~/.bashrc .; then
+    echo "Updated .bashrc"
+fi
+if cp ~/config .; then
+    echo "Updated config"
+fi
+if cp ~/i3blocks.conf .; then
+    echo "Updated i3blocks.conf"
+fi
+if cp ~/.tmux.conf .; then
+    echo "Updated .tmux.conf"
+fi
+if cp ~/.vimrc .; then
+    echo "Updated .vimrc"
+fi
