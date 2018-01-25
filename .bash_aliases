@@ -36,6 +36,7 @@ alias jclr='java_clean'
 
 # bash commands
 alias here='pwd | xargs echo -n | xclip -sel clip'
-alias backup="rsync -avz --delete --exclude '.cache' /home/jiahong/ /backup/ | egrep -i \"failed|error|warning\""
-alias backupv="rsync -avz --delete --exclude '.cache' /home/jiahong/ /backup/"
+# replaced with more secure read-only backup mount
+#alias backup="rsync -avz --delete --exclude '.cache' /home/jiahong/ /backup/ | egrep -i \"failed|error|warning\""
+#alias backupv="rsync -avz --delete --exclude '.cache' /home/jiahong/ /backup/"
 alias togglet='toggle_theme'
