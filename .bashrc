@@ -128,13 +128,14 @@ export EDITOR='vi'
 # base16 terminal
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1"  ] && [ -s $BASE16_SHELL/profile_helper.sh  ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_solarized-dark
+#base16_solarized-dark
+base16_ashes
+#base16_twilight
+#base16_tomorrow-night
 #base16_default-dark
-# base16_tomorrow-night
-# base16_ashes
-# base16_chalk
-# base16_materia
-# base16_oceanicnext
+#base16_chalk
+#base16_materia
+#base16_oceanicnext
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/jiahong/.sdkman"
