@@ -125,8 +125,8 @@
     autocmd FileType c setlocal cindent
 
     " Add '_' as a word separator in C/C++
-    autocmd FileType c setlocal iskeyword-=_
-    autocmd FileType cpp setlocal iskeyword-=_
+    " autocmd FileType c setlocal iskeyword-=_
+    " autocmd FileType cpp setlocal iskeyword-=_
 
     " matches '<' and '>', mainly for use when writing HTML.
     autocmd FileType html,eruby,htmldjango,php,xml setlocal mps+=<:> shiftwidth=2 tabstop=2
