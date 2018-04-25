@@ -12,7 +12,7 @@
 "   - CTRL-b 'GOTO' func/var definition (CTRL-o or CTRL-i to toggle back and
 "   forth afterwards)
 "
-"   - \-b find all 'USAGES/REFERENCES' (python, typescript only)
+"   - \-b find all 'USAGES/REFERENCES' (python, java, typescript only)
 "
 "   - CTRL-p 'FUZZY' finder (combine with ctrl-x or ctrl-v to open in new
 "   split or vertical split respectively)
@@ -434,13 +434,13 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_autoclose_preview_window_after_completion = 1
 " YCM falls back to syntastic's erorr and warning symbols
-let g:syntastic_error_symbol = '✖'
-let g:syntastic_warning_symbol = '❢'
+let g:ycm_error_symbol = '✖'
+let g:ycm_warning_symbol = '❢'
 " maps ctrl-b as goto definition
 " note: ctrl-o jumps back to where you were, ctrl-i jumps forward
 " to where the definition was (see :h jumplist)
 nnoremap <C-b> :YcmCompleter GoTo<CR>
 " maps leader-b as goto all usages - only for supported filetypes (python,
-" typescript)
+" java, and typescript)
 " note: leader = \
 nnoremap <leader>b :YcmCompleter GoToReferences<CR>
