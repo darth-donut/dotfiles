@@ -1,121 +1,164 @@
-" README
-" Dependencies- powerline font, eslint, pylint, gcc
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Dein package manager
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    if &compatible
-        set nocompatible
-    endif
+" TODO:
+"   python YCM configuration
+"   vimrc todo completion
+"
+" General-use:
+"
+" IDE-Like features:
+"
+" * note '-' in CTRL-x (for example) means ctrl 'followed' by x, NOT CTRL then - then x
+" * note '\' here is the leader key
+"
+"   - CTRL-b 'GOTO' func/var definition (CTRL-o or CTRL-i to toggle back and
+"   forth afterwards)
+"
+"   - \-b find all 'USAGES/REFERENCES' (python, typescript only)
+"
+"   - CTRL-p 'FUZZY' finder (combine with ctrl-x or ctrl-v to open in new
+"   split or vertical split respectively)
+"
+"   - :Grep find all 'USAGES/REFERENCES' - this is provided by another plugin
+"   other than YCM (this works for any filetypes)
+"
+"   - \\w or \\b for easy movement (vim-easymotion)
+"
+"   - ctrl-n for multi-cursor (like sublime text)
+"
+"   - <F3> shows quick fix list - this combined with \-b opens the list of all
+"   usages again
+"
+"   - gcc or gcb<number> to comment or block comment
+"
+"   - [b or ]b to switch prev and next tabs (buffers) in respectively
+"
+"   - <F4> Location list //todo
+"
+"   - <F5> shows unprintable characters
+"
+"   - <F6> Gundo (python2.6) undo graph-tree
+"
+"   - <F7> Tagbar toggle - shows an overview of the source code
+"
+"   - <F8> Nerd tree
+"
+"   - <F2> calls :set paste (paste mode)
+"
+" features:
+"   - fugitive vim - git wrapper //todo
+"
+"   - TMUX friendly, remaps ctrl-hjkl to work cross TMUX panes and vim splits
+"
+" dependencies:
+" * YCM dependencies:
+"       - sudo apt-get install build-essential cmake
+"       - sudo apt-get install python-dev python3-dev
+"       - JDK8
 
-    set runtimepath^=/home/jiahong/.vim/./repos/github.com/Shougo/dein.vim
-    call dein#begin(expand('~/.vim/bundle'))
-    call dein#add('Shougo/dein.vim')
-    " Plugins
-    " call dein#add('Shougo/neocomplete.vim')
-    " call dein#add('Shougo/neomru.vim')
-    " call dein#add('Shougo/neosnippet.vim')
-    " call dein#add('Shougo/neosnippet-snippets')
+" installs vim plugin manager (vim-plug)
+" automatically in your first vim session
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-    call dein#add('Shougo/vimproc.vim', {
-        \ 'build': {
-        \     'windows': 'tools\\update-dll-mingw',
-        \     'cygwin': 'make -f make_cygwin.mak',
-        \     'mac': 'make -f make_mac.mak',
-        \     'linux': 'make',
-        \     'unix': 'gmake',
-        \    },
-        \ })
+
+" HELP
+"  Vim Plug
+"    - PlugInstall to install plugins
+"    - PlugUpdate to install or update plugins
+"    - PlugClean to remove unused directories
+"    - PlugUpgrade to upgrade vim-plug itself
+"    - PlugStatus to check status of the plugins
+"    - PlugDiff examine changes from the previous update and the pending changes
+"    - PlugSnapshot Generate script for restoring the current snapshot of the plugins
+"  YCM
+"    - For C/C++ projects, YCM requires - https://github.com/Valloric/YouCompleteMe#c-family-semantic-completion
+call plug#begin('~/.vim/plugged')
 
     """""""""""""""""""""""""""
     " Plugins
     """""""""""""""""""""""""""
     " surrounds word with adjective
-    call dein#add('tpope/vim-surround')
+    Plug 'tpope/vim-surround'
     " git wrapper
-    call dein#add('tpope/vim-fugitive')
+    Plug 'tpope/vim-fugitive'
     " shortcuts, [b ]b [e ]e
-    call dein#add('tpope/vim-unimpaired')
+    Plug 'tpope/vim-unimpaired'
     " commenting
-    call dein#add('tomtom/tcomment_vim')
+    Plug 'tomtom/tcomment_vim'
 
-    " calls syntastic checkers
-    call dein#add('scrooloose/syntastic')
     " NERDtree
-    call dein#add('scrooloose/nerdtree')
+    Plug 'scrooloose/nerdtree'
     " laststatus=2
-    call dein#add('bling/vim-airline')
+    Plug 'bling/vim-airline'
     " fuzzy finder
-    call dein#add('ctrlpvim/ctrlp.vim')
+    Plug 'ctrlpvim/ctrlp.vim'
+
+    " YCM; this is configured only for c/c++ and Java (see github page for
+    " more completers)
+    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --java-completer'}
 
     " :Tagbar or F7 to toggle tags
-    call dein#add('majutsushi/tagbar')
-    " F9-10 for toggling list syntastic/EasyGrep
-    call dein#add('milkypostman/vim-togglelist')
+    Plug 'majutsushi/tagbar'
+    " F9-10 for toggling list syntastic/EasyGrep/YCM GotoReferences
+    Plug 'milkypostman/vim-togglelist'
 
     " more % functions
-    call dein#add('tmhedberg/matchit')
+    Plug 'tmhedberg/matchit'
     " match html tags with soft highlight
-    call dein#add('valloric/MatchTagAlways')
+    Plug 'valloric/MatchTagAlways'
     " auto close tags
-    call dein#add('alvan/vim-closetag')
+    Plug 'alvan/vim-closetag'
 
-    " ()
-    call dein#add('jiangmiao/auto-pairs')
+    " () pair
+    Plug 'jiangmiao/auto-pairs'
     " Graph style undo
-    call dein#add('sjl/gundo.vim')
+    Plug 'sjl/gundo.vim'
     " ctrl-n multi changing
-    call dein#add('terryma/vim-multiple-cursors')
+    Plug 'terryma/vim-multiple-cursors'
     " Easy moving
-    call dein#add('lokaltog/vim-easymotion')
+    Plug 'lokaltog/vim-easymotion'
     " Editor settings
-    call dein#add('editorconfig/editorconfig-vim')
+    Plug 'editorconfig/editorconfig-vim'
 
     " EasyGrep for vim
-    call dein#add('dkprice/vim-easygrep')
-    " Camelcasing movement
-    call dein#add('vim-scripts/camelcasemotion')
+    Plug 'dkprice/vim-easygrep'
     " nav between tmux and vim splits with ctrl-hjkl
-    call dein#add('christoomey/vim-tmux-navigator')
+    Plug 'christoomey/vim-tmux-navigator'
     " incremental searches
-    call dein#add('haya14busa/incsearch.vim')
+    Plug 'haya14busa/incsearch.vim'
     " snippets
-    " call dein#add('msanders/snipmate.vim')
-
+    " Plug 'msanders/snipmate.vim'
 
     " Log files php?
-    call dein#add('vim-scripts/log4j.vim')
+    Plug 'vim-scripts/log4j.vim'
 
     " Haskell
-    call dein#add('eagletmt/ghcmod-vim', {'on_ft': 'haskell'})
-    call dein#add('eagletmt/neco-ghc', {'on_ft' : 'haskell'})
+    Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+    Plug 'eagletmt/neco-ghc', {'for' : 'haskell'}
 
     " HTML XML allml
-    call dein#add('tpope/vim-ragtag')
+    Plug 'tpope/vim-ragtag'
 
-    " Syntax
-    call dein#add('pangloss/vim-javascript', {'on_ft':['javascript', 'javascript.jsx']})
-    call dein#add('hail2u/vim-css3-syntax', {'on_ft':['css', 'sass', 'html', 'javascript.jsx']})
-    call dein#add('othree/html5-syntax.vim', {'on_ft':['html', 'htmldjango', 'javascript.jsx']})
-    call dein#add('tpope/vim-markdown', {'on_ft':['markdown']})
-    call dein#add('tpope/vim-haml', {'on_ft':['haml']})
-    call dein#add('hdima/python-syntax', {'on_ft':['html']})
-    call dein#add('vim-jp/vim-cpp', {'on_ft':['c']})
-    call dein#add('wavded/vim-stylus', {'on_ft':['stylus']})
-    call dein#add('mxw/vim-jsx', {'on_ft':['javascript.jsx']})
-    call dein#add('justinmk/vim-syntax-extra', {'on_ft':['c']})
-    call dein#add('octol/vim-cpp-enhanced-highlight', {'on_ft':['cpp']})
+    " Syntax plugins
+    Plug 'pangloss/vim-javascript', {'for':['javascript', 'javascript.jsx']}
+    Plug 'hail2u/vim-css3-syntax', {'for':['css', 'sass', 'html', 'javascript.jsx']}
+    Plug 'othree/html5-syntax.vim', {'for':['html', 'htmldjango', 'javascript.jsx']}
+    Plug 'tpope/vim-markdown', {'for':['markdown']}
+    Plug 'tpope/vim-haml', {'for':['haml']}
+    Plug 'hdima/python-syntax', {'for':['html']}
+    Plug 'vim-jp/vim-cpp', {'for':['c']}
+    Plug 'wavded/vim-stylus', {'for':['stylus']}
+    Plug 'mxw/vim-jsx', {'for':['javascript.jsx']}
+    Plug 'justinmk/vim-syntax-extra', {'for':['c']}
+    Plug 'octol/vim-cpp-enhanced-highlight', {'for':['cpp']}
 
     " Themes
-    call dein#add('chriskempson/base16-vim')
-    call dein#add('vim-airline/vim-airline-themes')
+    Plug 'chriskempson/base16-vim'
+    Plug 'vim-airline/vim-airline-themes'
 
-    call dein#end()
-    filetype plugin indent on
-
-    " Install plugins on startup
-    if dein#check_install()
-      call dein#install()
-    endif
+call plug#end ()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype Specific Commands
@@ -197,31 +240,6 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic options
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    let g:syntastic_check_on_open=1
-    let g:syntastic_enable_signs=1
-    let g:syntastic_always_populate_loc_list = 1
-
-    let g:syntastic_error_symbol = '✖'
-    let g:syntastic_warning_symbol = '❢'
-
-    let g:syntastic_mode_map={'passive_filetypes':['python']}
-    " Use pylint
-    let g:syntastic_python_checkers = ['pylint']
-    let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
-    let g:syntastic_python_pylint_quiet_messages = { 'type' : 'style' }
-
-    " Use eslint (uses ~/.eslintrc)
-    let g:syntastic_javascript_checkers = ['eslint']
-
-    " Use gcc, make and splint
-    let g:syntastic_c_checkers = ['gcc', 'make']
-
-    let g:syntastic_cpp_checkers = ["g++", "cmake"]
-    let g:syntastic_cpp_compiler = ["g++", "cmake"]
-	let g:syntastic_cpp_compiler_options = ' -std=c++11'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Airline
@@ -239,133 +257,6 @@ map g# <Plug>(incsearch-nohl-g#)
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""
-"" Neocomplete options
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-"    " Disable AutoComplPop.
-"    let g:acp_enableAtStartup = 0
-"    " Use neocomplete.
-"    let g:neocomplete#enable_at_startup = 1
-"    " Use smartcase.
-"    let g:neocomplete#enable_smart_case = 1
-"    " Set minimum syntax keyword length.
-"    let g:neocomplete#sources#syntax#min_keyword_length = 3
-"    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-"    
-"    " Define dictionary.
-"    let g:neocomplete#sources#dictionary#dictionaries = {
-"        \ 'default' : '',
-"        \ 'vimshell' : $HOME.'/.vimshell_hist',
-"        \ 'scheme' : $HOME.'/.gosh_completions'
-"            \ }
-"    
-"    " Define keyword.
-"    if !exists('g:neocomplete#keyword_patterns')
-"        let g:neocomplete#keyword_patterns = {}
-"    endif
-"    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-"    
-"    " Plugin key-mappings.
-"    inoremap <expr><C-g>     neocomplete#undo_completion()
-"    inoremap <expr><C-l>     neocomplete#complete_common_string()
-"    
-"    " Recommended key-mappings.
-"    " <CR>: close popup and save indent.
-"    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"    function! s:my_cr_function()
-"      return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-"      " For no inserting <CR> key.
-"      "return pumvisible() ? "\<C-y>" : "\<CR>"
-"    endfunction
-"    " <TAB>: completion.
-"    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"    " <C-h>, <BS>: close popup and delete backword char.
-"    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-"    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"    " Close popup by <Space>.
-"    inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-"    
-"    " AutoComplPop like behavior.
-"    let g:neocomplete#enable_auto_select = 1
-"    
-"    " Shell like behavior(not recommended).
-"    "set completeopt+=longest
-"    "let g:neocomplete#enable_auto_select = 1
-"    "let g:neocomplete#disable_auto_complete = 1
-"    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-"    
-"    " Enable omni completion.
-"    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"    
-"    " Enable heavy omni completion.
-"    if !exists('g:neocomplete#sources#omni#input_patterns')
-"      let g:neocomplete#sources#omni#input_patterns = {}
-"    endif
-"    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"    
-"    " For perlomni.vim setting.
-"    " https://github.com/c9s/perlomni.vim
-"    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"    let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
-"    let g:neocomplete#enable_at_startup = 1
-"    let g:neocomplete#enable_auto_select = 1
-"    let g:neocomplete#enable_smart_case = 1
-"    let g:neocomplete#auto_completion_start_length = 2
-"   
-"    " increase limit for tag cache files
-"    let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
-"   
-"    " fuzzy completion breaks dot-repeat more noticeably
-"    " https://github.com/Shougo/neocomplete.vim/issues/332
-"    let g:neocomplete#enable_fuzzy_completion = 0
-"
-"    " always use completions from all buffers
-"    if !exists('g:neocomplete#same_filetypes')
-"      let g:neocomplete#same_filetypes = {}
-"    endif
-"    let g:neocomplete#same_filetypes._ = '_'
-"    
-"    " enable omni-completion for Ruby and PHP
-"    call neocomplete#util#set_default_dictionary(
-"          \'g:neocomplete#sources#omni#input_patterns', 'ruby',
-"          \'[^. *\t]\.\h\w*\|\h\w*::\w*')
-"    call neocomplete#util#set_default_dictionary(
-"          \'g:neocomplete#sources#omni#input_patterns',
-"          \'php',
-"          \'[^. \t]->\h\w*\|\h\w*::\w*')
-"    
-"    " from neocomplete.txt:
-"    " ---------------------
-"    
-"    " Plugin key-mappings.
-"    inoremap <expr> <C-g> neocomplete#undo_completion()
-"    inoremap <expr> <C-l> neocomplete#complete_common_string()
-"    
-"    " Recommended key-mappings.
-"    " <CR>: cancel popup and insert newline.
-"    inoremap <silent> <CR> <C-r>=neocomplete#smart_close_popup()<CR><CR>
-"    " <TAB>: completion.
-"    inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
-"    " <C-h>, <BS>: close popup and delete backword char.
-"    inoremap <expr> <C-h> neocomplete#smart_close_popup()."\<C-h>"
-"    inoremap <expr> <BS>  neocomplete#smart_close_popup()."\<C-h>"
-"    inoremap <expr> <C-y> neocomplete#close_popup()
-"    inoremap <expr> <C-e> neocomplete#cancel_popup()
-"
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" Neosnippet options
-""""""""""""""""""""""""""""""""""""""""""""""""""""
-"    " Press ctrl + k to expand or jump to next field
-"    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"    xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Gundo options
@@ -486,9 +377,9 @@ map g# <Plug>(incsearch-nohl-g#)
     set rnu
 
     " folding commands.
-    "" :set foldcolumn=2
-    " set foldmethod=indent
-    " set foldenable
+    set foldcolumn=2
+    set foldmethod=indent
+    set foldenable
 
     " tab autocompletion in the command space
     set wildmenu
@@ -536,3 +427,20 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" You complete me
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_autoclose_preview_window_after_completion = 1
+" YCM falls back to syntastic's erorr and warning symbols
+let g:syntastic_error_symbol = '✖'
+let g:syntastic_warning_symbol = '❢'
+" maps ctrl-b as goto definition
+" note: ctrl-o jumps back to where you were, ctrl-i jumps forward
+" to where the definition was (see :h jumplist)
+nnoremap <C-b> :YcmCompleter GoTo<CR>
+" maps leader-b as goto all usages - only for supported filetypes (python,
+" typescript)
+" note: leader = \
+nnoremap <leader>b :YcmCompleter GoToReferences<CR>
