@@ -87,6 +87,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-unimpaired'
     " commenting
     Plug 'tomtom/tcomment_vim'
+    " doxygen generator
+    Plug 'vim-scripts/DoxygenToolkit.vim'
 
     " NERDtree
     Plug 'scrooloose/nerdtree'
@@ -396,6 +398,13 @@ map g# <Plug>(incsearch-nohl-g#)
     set imsearch=0
 
     let $PATH = $PATH . ':' . expand('~/.cabal/bin')
+    "
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Doxygen
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" /// style docstring
+" let g:DoxygenToolkit_commentType = "C++"   
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Tmux-split-vim
