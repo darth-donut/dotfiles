@@ -53,7 +53,10 @@
 "       - sudo apt-get install build-essential cmake
 "       - sudo apt-get install python-dev python3-dev
 "       - JDK8
-
+" * Powerline fonts:
+"       - http://powerline.readthedocs.io/en/master/installation.html#fonts-installation
+" * Base16 colourscheme for terminal:
+"       - https://github.com/chriskempson/base16-shell
 " installs vim plugin manager (vim-plug)
 " automatically in your first vim session
 if empty(glob('~/.vim/autoload/plug.vim'))
