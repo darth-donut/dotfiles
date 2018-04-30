@@ -128,8 +128,8 @@ export EDITOR='vi'
 # base16 terminal
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1"  ] && [ -s $BASE16_SHELL/profile_helper.sh  ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-#base16_solarized-dark
-base16_ashes
+base16_solarized-dark
+#base16_ashes
 #base16_twilight
 #base16_tomorrow-night
 #base16_default-dark

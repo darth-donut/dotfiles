@@ -257,8 +257,11 @@ map g# <Plug>(incsearch-nohl-g#)
     endif
 
     " tabline options
-    " let g:airline_theme='bubblegum'
-    " let g:airline_theme='sol'
+    "let g:airline_theme='bubblegum'
+    "let g:airline_theme='sol'
+    let g:airline_theme='base16'
+    "let g:airline_theme='solarized'
+    "let g:airline_solarized_bg='dark'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -358,7 +361,7 @@ map g# <Plug>(incsearch-nohl-g#)
       let base16colorspace=256
       source ~/.vimrc_background
     endif
-    colorscheme base16-tomorrow-night
+    colorscheme base16-solarized-dark
 
 
     " write a backup of the current file (with an appended ~) on each write
@@ -407,7 +410,7 @@ map g# <Plug>(incsearch-nohl-g#)
 " Doxygen
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " /// style docstring
-" let g:DoxygenToolkit_commentType = "C++"   
+" let g:DoxygenToolkit_commentType = "C++"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Tmux-split-vim
