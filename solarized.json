@@ -26,7 +26,7 @@
 		"network_load_gradient":      { "fg": "green_yellow_orange_red", "bg": "solarized:base03", "attrs": [] },
 		"network_load_sent_gradient": "network_load_gradient",
 		"network_load_recv_gradient": "network_load_gradient",
-		"hostname":                   { "fg": "solarized:base3", "bg": "solarized:base01", "attrs": [] },
+		"hostname":                   { "fg": "solarized:base3", "bg": "solarized:base1", "attrs": [] },
 		"environment":                { "fg": "solarized:base3", "bg": "solarized:green", "attrs": [] },
 		"attached_clients":           { "fg": "solarized:base3", "bg": "solarized:green", "attrs": [] },
 		"date":                       { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": [] },
@@ -35,6 +35,8 @@
 		"system_load":                { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": [] },
 		"weather_temp_gradient":      { "fg": "blue_red", "bg": "solarized:base03", "attrs": [] },
 		"weather":                    { "fg": "solarized:base1", "bg": "solarized:base03", "attrs": [] },
-		"uptime":                     { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": [] }
+		"uptime":                     { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": [] },
+		"player":                     { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": [] },
+		"session":                    { "fg": "solarized:base1", "bg": "solarized:base02", "attrs": [] }
 	}
 }
