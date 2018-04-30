@@ -143,6 +143,9 @@ call plug#begin('~/.vim/plugged')
     " Log files php?
     Plug 'vim-scripts/log4j.vim'
 
+    " cmake completion
+    Plug 'jansenm/vim-cmake'
+
     " Haskell
     Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
     Plug 'eagletmt/neco-ghc', {'for' : 'haskell'}
