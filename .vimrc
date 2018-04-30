@@ -7,12 +7,14 @@
 " IDE-Like features:
 "
 " * note '-' in CTRL-x (for example) means ctrl 'followed' by x, NOT CTRL then - then x
-" * note '\' here is the leader key
+" * note '\' here is the <leader> key
 "
 "   - CTRL-b 'GOTO' func/var definition (CTRL-o or CTRL-i to toggle back and
 "   forth afterwards)
 "
 "   - \-b find all 'USAGES/REFERENCES' (python, java, typescript only)
+"
+"   - \-k get documentation
 "
 "   - CTRL-p 'FUZZY' finder (combine with ctrl-x or ctrl-v to open in new
 "   split or vertical split respectively)
@@ -30,6 +32,8 @@
 "   - gcc or gcb<number> to comment or block comment
 "
 "   - [b or ]b to switch prev and next tabs (buffers) in respectively
+"
+"   - vim surround
 "
 "   - <F4> Location list //todo
 "
@@ -448,7 +452,6 @@ endif
 " You complete me
 """""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_autoclose_preview_window_after_completion = 1
-" YCM falls back to syntastic's erorr and warning symbols
 let g:ycm_error_symbol = '✖'
 let g:ycm_warning_symbol = '❢'
 " maps ctrl-b as goto definition
@@ -459,3 +462,14 @@ nnoremap <C-b> :YcmCompleter GoTo<CR>
 " java, and typescript)
 " note: leader = \
 nnoremap <leader>b :YcmCompleter GoToReferences<CR>
+" autocomplete works in comments
+let g:ycm_complete_in_comments=1
+" turn on tag completion
+let g:ycm_collect_identifiers_from_tags_files=1
+" complete syntax keywords
+let g:ycm_seed_identifiers_with_syntax=1
+nnoremap <leader>k :YcmCompleter GetDoc<CR>
+" closes the preview window - this isn't for autocompletion, but rather
+" when you use YcmCompleter GetDoc; instead of closing the preview window
+" manually, close it by exiting insert mode
+let g:ycm_autoclose_preview_window_after_insertion = 1
