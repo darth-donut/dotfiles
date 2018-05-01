@@ -66,9 +66,10 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  silent !curl -fLo ~/.vim/.ycm_extra_conf.py --create-dirs
+    \ https://raw.githubusercontent.com/jfong361/dotfiles/master/.ycm_extra_conf.py
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
 
 " HELP
 "  Vim Plug
