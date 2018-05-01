@@ -476,3 +476,5 @@ nnoremap <leader>k :YcmCompleter GetDoc<CR>
 " when you use YcmCompleter GetDoc; instead of closing the preview window
 " manually, close it by exiting insert mode
 let g:ycm_autoclose_preview_window_after_insertion = 1
+" default options
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'

@@ -26,3 +26,7 @@ fi
 if cp ~/.config/powerline/config.json .; then
     echo "Updated powerline:config.json"
 fi
+
+if cp /home/jiahong/.vim/.ycm_extra_conf.py .; then
+    echo "Updated .ycm_extra_conf.py"
+fi
