@@ -95,6 +95,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-unimpaired'
     " commenting
     Plug 'tomtom/tcomment_vim'
+    " plugin repeatable
+    Plug 'tpope/vim-repeat'
     " doxygen generator
     Plug 'vim-scripts/DoxygenToolkit.vim'
 
@@ -412,13 +414,34 @@ map g# <Plug>(incsearch-nohl-g#)
     set imsearch=0
 
     let $PATH = $PATH . ':' . expand('~/.cabal/bin')
-    "
+
+    " allows . (repeat) on visually highlighted lines
+    vnoremap . :normal .<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Doxygen
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " /// style docstring
-" let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_commentType = "C++"
+" MIT license
+let g:DoxygenToolkit_licenseTag = "Copyright (c) ".strftime("%Y")." - JiaHong Fong\<enter>\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "Permission is hereby granted, free of charge, to any person obtaining a copy\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "of this software and associated documentation files (the \"Software\"), to deal\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "in the Software without restriction, including without limitation the rights\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "copies of the Software, and to permit persons to whom the Software is\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "furnished to do so, subject to the following conditions:\<enter>\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "The above copyright notice and this permission notice shall be included in all\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "copies or substantial portions of the Software.\<enter>\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE\<enter>"
+let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "OR OTHER DEALINGS IN THE SOFTWARE."
+let g:DoxygenToolkit_briefTag_funcName = "yes"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Tmux-split-vim
