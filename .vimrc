@@ -95,6 +95,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-unimpaired'
     " commenting
     Plug 'tomtom/tcomment_vim'
+    " plugin repeatable
+    Plug 'tpope/vim-repeat'
     " doxygen generator
     Plug 'vim-scripts/DoxygenToolkit.vim'
 
