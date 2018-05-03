@@ -173,7 +173,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'chriskempson/base16-vim'
     Plug 'vim-airline/vim-airline-themes'
 
-call plug#end ()
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype Specific Commands
