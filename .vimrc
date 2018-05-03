@@ -378,7 +378,7 @@ map g# <Plug>(incsearch-nohl-g#)
     set nobackup
 
     " Automatically change directory to the file in the current window.
-    set autochdir
+    " set autochdir
 
     "ignores the case in search patterns.
     set ignorecase
