@@ -26,8 +26,8 @@ MOUNT_DEV=/dev/sdb3
 BACKUP_DIR=/backup
 # ignorelist file, see gist
 IGNORELIST=/var/tmp/ignorelist
-# what to backup (/home/user/) instead of (home/user) - there's a difference for rsync
-SRC_DIR="$HOME/"
+# what to backup (/home/user/) instead of (/home/user) - there's a difference for rsync
+SRC_DIR="/home/jiahong/"
 
 # Check if script is run as root
 # TODO: how about setting SUID instead of root
