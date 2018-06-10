@@ -117,41 +117,15 @@ if ! shopt -oq posix; then
 fi
 
 
-# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #
-#                                                                                                                  #
-#                                            DO NOT EDIT ANYTING ABOVE                                             #
-#                                                                                                                  #
-# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ #
-
-export EDITOR='vi'
-
-# base16 terminal
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1"  ] && [ -s $BASE16_SHELL/profile_helper.sh  ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+### DO NOT TOUCH ANYTHING ABOVE ###
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1"  ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh"  ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
 base16_solarized-dark
-#base16_ashes
-#base16_twilight
-#base16_tomorrow-night
-#base16_default-dark
-#base16_chalk
-#base16_materia
-#base16_oceanicnext
 
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/jiahong/.sdkman"
-[[ -s "/home/jiahong/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jiahong/.sdkman/bin/sdkman-init.sh"
+# local bin dir
+export PATH="${PATH}:/home/jiahong/.local/bin"
 
-# added by Anaconda3 4.3.0 installer
-export PATH="/home/jiahong/Documents/anaconda3/bin:$PATH"
-
-# coloured user name (cyan-ish)
-# export PS1='\[\033[36m\]\u\[\033[m\]\[\033[32m\] \[\033[01;32m\][\W]\[\033[m\]\[\033[01;32m\]$(__git_ps1)\[\033[m\] \$ '
 export PS1='\u \[\033[01;32m\][\W]\[\033[m\]\[\033[01;32m\]$(__git_ps1)\[\033[m\] \$ '
-
-# add cabal's bin directory
-export PATH="/home/jiahong/.cabal/bin:$PATH"
-
-# cuda path
-export PATH=/usr/local/cuda-9.1/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-9.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-9.1/extras/CUPTI/lib64
