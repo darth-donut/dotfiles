@@ -173,6 +173,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'chriskempson/base16-vim'
     Plug 'vim-airline/vim-airline-themes'
 
+    " Syntastic
+    Plug 'vim-syntastic/syntastic'
+    Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -476,7 +480,7 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" You complete me
+" YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_error_symbol = '✖'
@@ -502,3 +506,18 @@ nnoremap <leader>k :YcmCompleter GetDoc<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " default options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = '✖'
+let g:syntastic_style_error_symbol = '✖'
+let g:syntastic_warning_symbol = '❢'
+let g:syntastic_style_warning_symbol ='❢'
+
