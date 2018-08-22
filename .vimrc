@@ -91,11 +91,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     " git wrapper
     Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+
     " shortcuts, [b ]b [e ]e
     Plug 'tpope/vim-unimpaired'
     " commenting
     Plug 'tomtom/tcomment_vim'
-    " plugin repeatable
+    " . now has repeat on steroids
     Plug 'tpope/vim-repeat'
     " doxygen generator
     Plug 'vim-scripts/DoxygenToolkit.vim'
@@ -521,3 +523,8 @@ let g:syntastic_style_error_symbol = '✖'
 let g:syntastic_warning_symbol = '❢'
 let g:syntastic_style_warning_symbol ='❢'
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git gutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+set updatetime=100
