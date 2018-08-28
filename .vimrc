@@ -17,10 +17,10 @@
 "   - \-k get documentation
 "
 "   - CTRL-p 'FUZZY' finder (combine with ctrl-x or ctrl-v to open in new
-"   split or vertical split respectively)
+"     split or vertical split respectively)
 "
 "   - :Grep find all 'USAGES/REFERENCES' - this is provided by another plugin
-"   other than YCM (this works for any filetypes)
+"     other than YCM (this works for any filetypes)
 "
 "   - \\w or \\b for easy movement (vim-easymotion)
 "
@@ -56,7 +56,8 @@
 " * YCM dependencies:
 "       - sudo apt-get install build-essential cmake
 "       - sudo apt-get install python-dev python3-dev
-"       - JDK8
+"       - JDK
+"       - rust (rustup component add rust-src)
 " * Powerline fonts:
 "       - http://powerline.readthedocs.io/en/master/installation.html#fonts-installation
 " * Base16 colourscheme for terminal:
@@ -111,7 +112,7 @@ call plug#begin('~/.vim/plugged')
 
     " YCM; this is configured only for c/c++ and Java (see github page for
     " more completers)
-    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --java-completer'}
+    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --java-completer --rust-completer'}
 
     " :Tagbar or F7 to toggle tags
     Plug 'majutsushi/tagbar'
@@ -401,9 +402,9 @@ map g# <Plug>(incsearch-nohl-g#)
     set rnu
 
     " folding commands.
-    set foldcolumn=2
-    set foldmethod=indent
-    set foldenable
+    " set foldcolumn=2
+    " set foldmethod=indent
+    " set foldenable
 
     " tab autocompletion in the command space
     set wildmenu
@@ -484,7 +485,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_autoclose_preview_window_after_completion = 1
+set completeopt-=preview
 let g:ycm_error_symbol = '✖'
 let g:ycm_warning_symbol = '❢'
 " maps ctrl-b as goto definition
