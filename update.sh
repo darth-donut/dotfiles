@@ -19,6 +19,10 @@ if cp ~/.vimrc .; then
     echo "Updated .vimrc"
 fi
 
+if cp ~/.spacemacs .; then
+    echo "Updated .spacemacs"
+fi
+
 if cp ~/.config/powerline/colorschemes/tmux/solarized.json .; then
     echo "Updated powerline:solarized.json"
 fi

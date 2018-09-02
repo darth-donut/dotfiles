@@ -128,3 +128,4 @@ base16_solarized-dark
 
 # git branch prompt ---------------------------
 export PS1='\u \[\033[01;32m\][\W]\[\033[m\]\[\033[01;32m\]$(__git_ps1)\[\033[m\] \$ '
+set -o vi
