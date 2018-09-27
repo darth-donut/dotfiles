@@ -1,0 +1,17 @@
+{
+    "editor.fontFamily": "Ubuntu Mono",
+    "editor.fontSize": 16,
+    "files.autoSave": "afterDelay",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.lineHeight": 19,
+    "editor.tokenColorCustomizations": {
+        "[Default Dark+]": {
+            "functions":"#CC565B",
+            "types": "#CC565B",
+            "strings": "#6A8759",
+            "keywords":"#239DFF",
+            "numbers": "#7c79B5"
+        }
+    },
+    "cmake.configureOnOpen": true
+}

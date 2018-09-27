@@ -34,3 +34,13 @@ fi
 if cp /home/jiahong/.vim/.ycm_extra_conf.py .; then
     echo "Updated .ycm_extra_conf.py"
 fi
+
+if cp /home/jiahong/.config/Code/User/settings.json .; then
+    echo "Updated Code/User/settings.json"
+fi
+
+if cp /home/jiahong/.config/Code/User/keybindings.json .; then
+    echo "Updated Code/User/keybindings.json"
+fi
+
+test -d ~/.vscode/extensions/ && ls $_ >> vscode_extensions.txt && echo "Updated vscode extensions list"

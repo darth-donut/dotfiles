@@ -1,0 +1,8 @@
+formulahendry.code-runner-0.9.4
+ms-python.python-2018.8.0
+ms-vscode.cpptools-0.18.1
+robertohuertasm.vscode-icons-7.27.0
+rust-lang.rust-0.4.10
+twxs.cmake-0.0.17
+vector-of-bool.cmake-tools-1.1.2
+vscodevim.vim-0.16.5
