@@ -6,10 +6,10 @@
     "editor.lineHeight": 19,
     "editor.tokenColorCustomizations": {
         "[Default Dark+]": {
-            "functions":"#CC565B",
-            "types": "#CC565B",
+            "keywords":"#CC565B",
             "strings": "#6A8759",
-            "keywords":"#239DFF",
+            "types": "#CC565B",
+            "functions":"#239DFF",
             "numbers": "#7c79B5"
         }
     },
