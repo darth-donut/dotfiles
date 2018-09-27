@@ -43,4 +43,4 @@ if cp /home/jiahong/.config/Code/User/keybindings.json .; then
     echo "Updated Code/User/keybindings.json"
 fi
 
-test -d ~/.vscode/extensions/ && ls $_ >> vscode_extensions.txt && echo "Updated vscode extensions list"
+test -d ~/.vscode/extensions/ && ls $_ > vscode_extensions.txt && echo "Updated vscode extensions list"

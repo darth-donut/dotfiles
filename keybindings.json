@@ -11,7 +11,7 @@
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     {
-        "key": "shift+k",
+        "key": "ctrl+shift+k",
         "command": "editor.action.previewDeclaration",
         "when": "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
     },
@@ -63,5 +63,41 @@
     {
         "key": "ctrl+pagedown",
         "command": "-workbench.action.nextEditor"
+    },
+    {
+        "key": "alt+1",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "ctrl+shift+e",
+        "command": "-workbench.view.explorer"
+    },
+    {
+        "key": "shift+escape",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "shift+k",
+        "command": "C_Cpp.PeekDeclaration",
+        "when": "editorTextFocus && editorLangId == 'c'"
+    },
+    {
+        "key": "ctrl+alt+f12",
+        "command": "-C_Cpp.PeekDeclaration",
+        "when": "editorTextFocus && editorLangId == 'c'"
+    },
+    {
+        "key": "shift+k",
+        "command": "C_Cpp.PeekDeclaration",
+        "when": "editorTextFocus && editorLangId == 'cpp'"
+    },
+    {
+        "key": "ctrl+alt+f12",
+        "command": "-C_Cpp.PeekDeclaration",
+        "when": "editorTextFocus && editorLangId == 'cpp'"
     }
 ]

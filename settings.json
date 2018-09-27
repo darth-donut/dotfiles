@@ -13,5 +13,5 @@
             "numbers": "#7c79B5"
         }
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
 }
