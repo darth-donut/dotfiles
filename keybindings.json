@@ -73,7 +73,7 @@
         "command": "-workbench.view.explorer"
     },
     {
-        "key": "shift+escape",
+        "key": "shift+`",
         "command": "workbench.action.toggleSidebarVisibility"
     },
     {

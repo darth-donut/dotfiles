@@ -14,4 +14,30 @@
         }
     },
     "cmake.configureOnOpen": true,
+    "vim.useSystemClipboard": true,
+    "vim.incsearch": true,
+    "vim.hlsearch": true,
+    "vim.easymotion": true,
+    "vim.surround": true,
+    "vim.easymotionMarkerBackgroundColor": "#f2f4a4",
+    "vim.easymotionMarkerForegroundColorOneChar": "#000000",
+    "vim.easymotionMarkerForegroundColorTwoChar": "#000000",
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ]
 }
