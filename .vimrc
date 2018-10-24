@@ -384,7 +384,7 @@ map g# <Plug>(incsearch-nohl-g#)
     """""""""""""""""""""""""""""""""""""""
     " Override base16's colourscheme for solarized-dark (more red hues)
     function! s:base16_customize() abort
-      call Base16hi("Type", g:base16_gui08, "", g:base16_cterm08, "", "bold", "")
+      call Base16hi("Type", g:base16_gui08, "", g:base16_cterm08, "", "", "")
       call Base16hi("SpellBad", g:base16_gui06, g:base16_gui03, g:base16_cterm06, g:base16_cterm03, "bold,italic", "")
     endfunction
 
