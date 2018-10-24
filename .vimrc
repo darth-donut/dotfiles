@@ -2,6 +2,13 @@
 "   python YCM configuration
 "   vimrc todo completion
 "
+" XXX:
+"   Warning:
+"       - This config uses base16's solarized-dark theme with some minor
+"       tweaks (search on_change_colorschema to see where the tweak happens)
+"           * How will this affect you? If you change a theme and not remove
+"           the tweak, you might see some colours that are very out of place.
+"
 " General-use:
 "
 " IDE-Like features:
@@ -182,6 +189,7 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Filetype Specific Commands
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -276,9 +284,9 @@ map g# <Plug>(incsearch-nohl-g#)
     " tabline options
     "let g:airline_theme='bubblegum'
     "let g:airline_theme='sol'
-    let g:airline_theme='base16'
     "let g:airline_theme='solarized'
     "let g:airline_solarized_bg='dark'
+    let g:airline_theme='base16'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
     let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -371,7 +379,21 @@ map g# <Plug>(incsearch-nohl-g#)
     " autoformats text, wraps lines, autoindents, continues comments etc.
     set formatoptions=croqn2
 
-    " syntax colouration and highlighting
+    """""""""""""""""""""""""""""""""""""""
+    " Syntax colouration and highlighting "
+    """""""""""""""""""""""""""""""""""""""
+    " Override base16's colourscheme for solarized-dark (more red hues)
+    function! s:base16_customize() abort
+      " call Base16hi("Keyword", g:base16_gui08, "", g:base16_cterm08, "", "", "")
+      call Base16hi("Type", g:base16_gui08, "", g:base16_cterm08, "", "none", "")
+    endfunction
+
+    augroup on_change_colorschema
+      autocmd!
+      autocmd ColorScheme * call s:base16_customize()
+    augroup END
+
+    " define the colourscheme using base16
     syn on
     let base16colorspace=256
     if filereadable(expand("~/.vimrc_background"))
@@ -431,7 +453,7 @@ map g# <Plug>(incsearch-nohl-g#)
 " /// style docstring
 let g:DoxygenToolkit_commentType = "C++"
 " MIT license
-let g:DoxygenToolkit_licenseTag = "Copyright (c) ".strftime("%Y")." - JiaHong Fong\<enter>\<enter>"
+let g:DoxygenToolkit_licenseTag = "Copyright (c) ".strftime("%Y")." - Jia-Hong Fong\<enter>\<enter>"
 let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "Permission is hereby granted, free of charge, to any person obtaining a copy\<enter>"
 let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "of this software and associated documentation files (the \"Software\"), to deal\<enter>"
 let g:DoxygenToolkit_licenseTag = g:DoxygenToolkit_licenseTag . "in the Software without restriction, including without limitation the rights\<enter>"
