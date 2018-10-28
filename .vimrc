@@ -385,7 +385,7 @@ map g# <Plug>(incsearch-nohl-g#)
     " Override base16's colourscheme for solarized-dark (more red hues)
     function! s:base16_customize() abort
       call Base16hi("Type", g:base16_gui08, "", g:base16_cterm08, "", "", "")
-      call Base16hi("SpellBad", g:base16_gui06, g:base16_gui03, g:base16_cterm06, g:base16_cterm03, "bold,italic", "")
+      call Base16hi("SpellBad", g:base16_gui01, g:base16_gui02, g:base16_cterm01, g:base16_cterm02, "bold,italic", "")
     endfunction
 
     augroup on_change_colorschema
@@ -532,7 +532,6 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " default options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -545,7 +544,6 @@ let g:syntastic_error_symbol = '✖'
 let g:syntastic_style_error_symbol = '✖'
 let g:syntastic_warning_symbol = '❢'
 let g:syntastic_style_warning_symbol ='❢'
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Git gutter
