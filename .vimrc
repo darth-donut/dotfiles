@@ -282,10 +282,6 @@ map g# <Plug>(incsearch-nohl-g#)
     endif
 
     " tabline options
-    "let g:airline_theme='bubblegum'
-    "let g:airline_theme='sol'
-    "let g:airline_theme='solarized'
-    "let g:airline_solarized_bg='dark'
     let g:airline_theme='base16'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
