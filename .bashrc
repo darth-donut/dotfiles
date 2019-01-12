@@ -119,7 +119,7 @@ fi
 
 ### DO NOT TOUCH ANYTHING ABOVE ###
 
-# base16 shell --------------------------------
+## base16 shell --------------------------------
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1"  ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh"  ] && \
@@ -128,6 +128,9 @@ base16_solarized-dark
 base16_solarized-light
 base16_flat
 
-# git branch prompt ---------------------------
+## git branch prompt ---------------------------
 export PS1='\u \[\033[01;32m\][\W]\[\033[m\]\[\033[01;32m\]$(__git_ps1)\[\033[m\] \$ '
 set -o vi
+
+## Miniconda ------------------------------------
+. /home/jiahong/Documents/miniconda3/etc/profile.d/conda.sh

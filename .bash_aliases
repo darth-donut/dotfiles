@@ -1,4 +1,7 @@
+# usage: $ here
 alias here="pwd | xargs echo -n | xclip -sel clip"
-alias vim=vi
-alias aconda="export PATH=\"/home/jiahong/Documents/miniconda3/bin:${PATH}\""
+# usage: $ open foo.pdf
 alias open="xdg-open"
+# usage: $ copy < foo.txt
+alias copy="xclip -sel clip"
+alias vim=vi
