@@ -1,6 +1,6 @@
 {
     "editor.fontFamily": "Ubuntu Mono",
-    "editor.fontSize": 16,
+    "editor.fontSize": 20,
     "files.autoSave": "afterDelay",
     "workbench.iconTheme": "vscode-icons",
     "editor.lineHeight": 19,
