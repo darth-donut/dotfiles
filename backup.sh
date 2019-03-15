@@ -54,9 +54,12 @@ fi
 #     --exclude-from="$IGNORELIST" \
 #     --delete-excluded \
 #     $SRC_DIR $BACKUP_DIR
-# commented out on Sun 10 Jun 21:42:46 AEST 2018 because we no longer delete files we do not have
-#$RSYNC -avz --delete --exclude-from="$IGNORELIST" --delete-excluded $SRC_DIR $BACKUP_DIR
-$RSYNC -avz --exclude-from="$IGNORELIST" $SRC_DIR $BACKUP_DIR
+
+# abrasive syncing
+$RSYNC -avz --delete --exclude-from="$IGNORELIST" --delete-excluded $SRC_DIR $BACKUP_DIR
+
+# doesn't delete missing files
+# $RSYNC -avz --exclude-from="$IGNORELIST" $SRC_DIR $BACKUP_DIR
 
 # Remount backup directory as read only
 mount -o remount,ro $MOUNT_DEV $BACKUP_DIR
