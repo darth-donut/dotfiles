@@ -131,5 +131,18 @@ base16_solarized-dark
 export PS1='\u \[\033[01;32m\][\W]\[\033[m\]\[\033[01;32m\]$(__git_ps1)\[\033[m\] \$ '
 set -o vi
 
-## Miniconda ------------------------------------
-. /home/jiahong/Documents/miniconda3/etc/profile.d/conda.sh
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jiahong/Documents/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jiahong/Documents/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jiahong/Documents/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jiahong/Documents/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

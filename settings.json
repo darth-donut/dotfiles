@@ -2,7 +2,6 @@
     "editor.fontFamily": "Ubuntu Mono",
     "editor.fontSize": 20,
     "files.autoSave": "afterDelay",
-    "workbench.iconTheme": "vscode-icons",
     "editor.lineHeight": 19,
     "editor.tokenColorCustomizations": {
         "[Default Dark+]": {
@@ -39,5 +38,10 @@
                 "editor.action.outdentLines"
             ]
         },
-    ]
+    ],
+    "autoDocstring.docstringFormat": "sphinx",
+    "autoDocstring.includeDescription": true,
+    "autoDocstring.includeName": true,
+    "autoDocstring.newlineBeforeSummary": true,
+    "workbench.iconTheme": null,
 }

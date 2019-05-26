@@ -1,76 +1,3 @@
-" TODO:
-"   python YCM configuration
-"   vimrc todo completion
-"
-" XXX:
-"   Warning:
-"       - This config uses base16's solarized-dark theme with some minor
-"       tweaks (search on_change_colorschema to see where the tweak happens)
-"           * How will this affect you? If you change a theme and not remove
-"           the tweak, you might see some colours that are very out of place.
-"
-" General-use:
-"
-" IDE-Like features:
-"
-" * note '-' in CTRL-x (for example) means ctrl 'followed' by x, NOT CTRL then - then x
-" * note '\' here is the <leader> key
-"
-"   - CTRL-b 'GOTO' func/var definition (CTRL-o or CTRL-i to toggle back and
-"   forth afterwards)
-"
-"   - \-b find all 'USAGES/REFERENCES' (python, java, typescript only)
-"
-"   - \-k get documentation
-"
-"   - CTRL-p 'FUZZY' finder (combine with ctrl-x or ctrl-v to open in new
-"     split or vertical split respectively)
-"
-"   - :Grep find all 'USAGES/REFERENCES' - this is provided by another plugin
-"     other than YCM (this works for any filetypes)
-"
-"   - \\w or \\b for easy movement (vim-easymotion)
-"
-"   - ctrl-n for multi-cursor (like sublime text)
-"
-"   - <F3> shows quick fix list - this combined with \-b opens the list of all
-"   usages again
-"
-"   - gcc or gcb<number> to comment or block comment
-"
-"   - [b or ]b to switch prev and next tabs (buffers) in respectively
-"
-"   - vim surround
-"
-"   - <F4> Location list //todo
-"
-"   - <F5> shows unprintable characters
-"
-"   - <F6> Gundo (python2.6) undo graph-tree
-"
-"   - <F7> Tagbar toggle - shows an overview of the source code
-"
-"   - <F8> Nerd tree
-"
-"   - <F2> calls :set paste (paste mode)
-"
-" features:
-"   - fugitive vim - git wrapper //todo
-"
-"   - TMUX friendly, remaps ctrl-hjkl to work cross TMUX panes and vim splits
-"
-" dependencies:
-" * YCM dependencies:
-"       - sudo apt-get install build-essential cmake
-"       - sudo apt-get install python-dev python3-dev
-"       - JDK
-"       - rust (rustup component add rust-src)
-" * Powerline fonts:
-"       - http://powerline.readthedocs.io/en/master/installation.html#fonts-installation
-" * Base16 colourscheme for terminal:
-"       - https://github.com/chriskempson/base16-shell
-" installs vim plugin manager (vim-plug)
-" automatically in your first vim session
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -79,17 +6,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" HELP
-"  Vim Plug
-"    - PlugInstall to install plugins
-"    - PlugUpdate to install or update plugins
-"    - PlugClean to remove unused directories
-"    - PlugUpgrade to upgrade vim-plug itself
-"    - PlugStatus to check status of the plugins
-"    - PlugDiff examine changes from the previous update and the pending changes
-"    - PlugSnapshot Generate script for restoring the current snapshot of the plugins
-"  YCM
-"    - For C/C++ projects, YCM requires - https://github.com/Valloric/YouCompleteMe#c-family-semantic-completion
 call plug#begin('~/.vim/plugged')
 
     """""""""""""""""""""""""""
@@ -97,351 +13,142 @@ call plug#begin('~/.vim/plugged')
     """""""""""""""""""""""""""
     " surrounds word with adjective
     Plug 'tpope/vim-surround'
-    " git wrapper
-    Plug 'tpope/vim-fugitive'
-    Plug 'airblade/vim-gitgutter'
-
-    " shortcuts, [b ]b [e ]e
-    Plug 'tpope/vim-unimpaired'
     " commenting
     Plug 'tomtom/tcomment_vim'
     " . now has repeat on steroids
     Plug 'tpope/vim-repeat'
     " doxygen generator
     Plug 'vim-scripts/DoxygenToolkit.vim'
-
     " NERDtree
     Plug 'scrooloose/nerdtree'
     " laststatus=2
     Plug 'bling/vim-airline'
     " fuzzy finder
     Plug 'ctrlpvim/ctrlp.vim'
-
-    " YCM; this is configured only for c/c++ and Java (see github page for
-    " more completers)
-    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --java-completer --rust-completer'}
-
-    " :Tagbar or F7 to toggle tags
-    Plug 'majutsushi/tagbar'
-    " F9-10 for toggling list syntastic/EasyGrep/YCM GotoReferences
-    Plug 'milkypostman/vim-togglelist'
-
+    " auto completer
+    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --rust-completer'}
     " more % functions
     Plug 'tmhedberg/matchit'
-    " match html tags with soft highlight
-    Plug 'valloric/MatchTagAlways'
     " auto close tags
     Plug 'alvan/vim-closetag'
-
     " () pair
     Plug 'jiangmiao/auto-pairs'
-    " Graph style undo
-    Plug 'sjl/gundo.vim'
     " ctrl-n multi changing
     Plug 'terryma/vim-multiple-cursors'
-    " Easy moving
-    Plug 'lokaltog/vim-easymotion'
-    " Editor settings
-    Plug 'editorconfig/editorconfig-vim'
-
-    " EasyGrep for vim
-    Plug 'dkprice/vim-easygrep'
     " nav between tmux and vim splits with ctrl-hjkl
     Plug 'christoomey/vim-tmux-navigator'
-    " incremental searches
-    Plug 'haya14busa/incsearch.vim'
-    " snippets
-    " Plug 'msanders/snipmate.vim'
-
-    " Log files php?
-    Plug 'vim-scripts/log4j.vim'
-
     " cmake completion
     Plug 'jansenm/vim-cmake'
-
-    " Haskell
-    Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
-    Plug 'eagletmt/neco-ghc', {'for' : 'haskell'}
-
-    " HTML XML allml
-    Plug 'tpope/vim-ragtag'
-
-    " Syntax plugins
-    Plug 'pangloss/vim-javascript', {'for':['javascript', 'javascript.jsx']}
-    Plug 'hail2u/vim-css3-syntax', {'for':['css', 'sass', 'html', 'javascript.jsx']}
-    Plug 'othree/html5-syntax.vim', {'for':['html', 'htmldjango', 'javascript.jsx']}
-    Plug 'tpope/vim-markdown', {'for':['markdown']}
-    Plug 'tpope/vim-haml', {'for':['haml']}
-    Plug 'hdima/python-syntax', {'for':['html']}
-    Plug 'vim-jp/vim-cpp', {'for':['c']}
-    Plug 'wavded/vim-stylus', {'for':['stylus']}
-    Plug 'mxw/vim-jsx', {'for':['javascript.jsx']}
-    Plug 'justinmk/vim-syntax-extra', {'for':['c']}
-    Plug 'octol/vim-cpp-enhanced-highlight', {'for':['cpp']}
-
     " Themes
     Plug 'chriskempson/base16-vim'
     Plug 'vim-airline/vim-airline-themes'
-
-    " Syntastic
-    Plug 'vim-syntastic/syntastic'
     Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
-" Filetype Specific Commands
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    " To check what filetype it is ':set filetype?'
-    autocmd FileType make setlocal noexpandtab
-    autocmd FileType c setlocal cindent
-
-    " Add '_' as a word separator in C/C++
-    " autocmd FileType c setlocal iskeyword-=_
-    " autocmd FileType cpp setlocal iskeyword-=_
-
-    " matches '<' and '>', mainly for use when writing HTML.
-    autocmd FileType html,eruby,htmldjango,php,xml setlocal mps+=<:> shiftwidth=2 tabstop=2
-    autocmd FileType javascript.jsx setlocal mps+=<:>
-
-    " Look up the type of the haskell expression under the cursor
-    autocmd FileType haskell nnoremap <leader>t :GhcModType<CR>
-    autocmd FileType haskell nnoremap <leader>c :GhcModTypeClear<CR>
-    autocmd FileType haskell nnoremap <leader>i :GhcModTypeInsert<CR>
-
-    " Set the syntax highlighting of log files to log4j
-    autocmd BufRead,BufNew *.log set filetype=messages
-
-    " set the spell checker on.
-    autocmd FileType text,markdown,plaintex,html,xml,tex setlocal spell
-
-    " set the syntax highlighting of jsx files
-    autocmd BufRead,BufNew *.jsx set filetype=javascript.jsx syntax=javascript.jsx
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-closetag
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    let g:closetag_filenames = "*.jsx,*.html"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" EasyGrep
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    " EasyGrep searches according to the current filetype.
-    let g:EasyGrepMode = 2
-
-    " Uses grep rather than vimgrep.
-    let g:EasyGrepCommand = 1
-
-    " Looks for a repository directory to search under, defaults to cwd if it can't find one.
-    let g:EasyGrepRoot = "repository"
-
-    " Exclude the following files and folders
-    let g:EasyGrepFilesToExclude = ".o,.svn,.git,build,node_modules"
-
-    " EasyGrep recursively searches from the root
-    let g:EasyGrepRecursive = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" MatchTagAlways
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    let g:mta_filetypes = {
-        \ 'html' : 1,
-        \ 'xhtml' : 1,
-        \ 'xml' : 1,
-        \ 'jinja' : 1,
-        \ 'eruby' : 1,
-        \ 'htmldjango' : 1,
-        \ 'javascript.jsx': 1}
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Incsearch
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""
-    " Using powerline font
-    let g:airline_powerline_fonts = 1
+" Using powerline font
+let g:airline_powerline_fonts = 1
 
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 
-    " tabline options
-    let g:airline_theme='base16'
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
-    let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Gundo options
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    nmap <F6> :GundoToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tagbar options
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    nmap <F7> :TagbarToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nerdtree options
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    map <F8> :NERDTreeToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Togglelist options
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-    map <F3> :call ToggleQuickfixList()<CR>
-    map <F4> :call ToggleLocationList()<CR>
+" tabline options
+let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Editor options
 """""""""""""""""""""""""""""""""""""""""""""""""""
-    " Sets the encoding to the utf-8 character set
-    set enc=utf-8
-    set term=screen-256color
-    set t_Co=256
+" Sets the encoding to the utf-8 character set
+set enc=utf-8
+set term=screen-256color
+set t_Co=256
+" Y as y$
+nnoremap Y y$
+" Paste mode
+set pastetoggle=<F2>
+" Reload files changed externally to vim.
+set autoread
+" shows status line with filename, column/row coords, dirty bit
+set laststatus=2
+set ruler
+" sets xterm title to display the name of the file currently being edited
+set title
+" shows mode (i.e. insert mode etc)
+set showmode
+" shows the keystrokes currently waiting to be processed
+set showcmd
+" always reports the number of lines changed
+set report=0
+" flashes the screen instead of beeping the computer
+set visualbell t_vb=
+" Allow the backspace button to backspace over indents, eols and the start of insert.
+set backspace=indent,eol,start
+" searches are incremental
+set incsearch
+" show matching bracket briefly
+set showmatch
+" don't wrap long lines
+set nowrap
+" Show non-white space characters when using :set list
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+" character to mark lines that exceed 80 characters
+set listchars+=extends:@
+" indent on new line is equal to indent on previous line
+set smartindent
+" tabstops are converted to spaces, ensuring the file always looks the same.
+set expandtab
+" tabstops set to 4 spaces
+set tabstop=4
+" width of an indent level
+set shiftwidth=4
+" smarttab uses shiftwidth at the start of a line and tabstop everywhere else.
+set smarttab
+" autoformats text, wraps lines, autoindents, continues comments etc.
+set formatoptions=croqn2
+" write a backup of the current file (with an appended ~) on each write
+set nobackup
+"ignores the case in search patterns.
+set ignorecase
+set smartcase
+" Highlights matching terms when searching.
+set hlsearch
+" Turns the mouse off.
+set mouse=r
+" turn on line-numbers.
+set nu
+set rnu
+" tab autocompletion in the command space
+set wildmenu
+set wildmode=longest,full
+" Toggles display of unprintable characters.
+nnoremap <F5> :set list!<CR>
+" allows . (repeat) on visually highlighted lines
+vnoremap . :normal .<CR>
 
-    " latex settings
-    set grepprg=grep\ -nH\ $*
-    let g:tex_flavor='latex'
-    let g:tex_indent_items=1
-
-    " Y as y$
-    nnoremap Y y$
-
-    " Paste mode
-    set pastetoggle=<F2>
-
-    " Reload files changed externally to vim.
-    set autoread
-
-    " shows status line with filename, column/row coords, dirty bit
-    set laststatus=2
-    set ruler
-    " sets xterm title to display the name of the file currently being edited
-    set title
-    " shows mode (i.e. insert mode etc)
-    set showmode
-    " shows the keystrokes currently waiting to be processed
-    set showcmd
-    " always reports the number of lines changed
-    set report=0
-    " flashes the screen instead of beeping the computer
-    set visualbell t_vb=
-
-    " Allow the backspace button to backspace over indents, eols and the start of insert.
-    set backspace=indent,eol,start
-
-    " searches are incremental
-    set incsearch
-    " show matching bracket briefly
-    set showmatch
-
-    " don't wrap long lines
-    set nowrap
-
-    " Show non-white space characters when using :set list
-    set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-
-    " character to mark lines that exceed 80 characters
-    set listchars+=extends:@
-
-    " indent on new line is equal to indent on previous line
-    set smartindent
-    " tabstops are converted to spaces, ensuring the file always looks the same.
-    set expandtab
-    " tabstops set to 4 spaces
-    set tabstop=4
-    " width of an indent level
-    set shiftwidth=4
-    " smarttab uses shiftwidth at the start of a line and tabstop everywhere else.
-    set smarttab
-
-    " autoformats text, wraps lines, autoindents, continues comments etc.
-    set formatoptions=croqn2
-
-    """""""""""""""""""""""""""""""""""""""
-    " Syntax colouration and highlighting "
-    """""""""""""""""""""""""""""""""""""""
-    " Override base16's colourscheme for solarized-dark (more red hues)
-    function! s:base16_customize() abort
-      call Base16hi("Type", g:base16_gui08, "", g:base16_cterm08, "", "", "")
-      call Base16hi("SpellBad", g:base16_gui01, g:base16_gui02, g:base16_cterm01, g:base16_cterm02, "bold,italic", "")
-    endfunction
-
-    augroup on_change_colorschema
-      autocmd!
-      autocmd ColorScheme * call s:base16_customize()
-    augroup END
-
-    " define the colourscheme using base16
-    syn on
-    let base16colorspace=256
-    if filereadable(expand("~/.vimrc_background"))
-      let base16colorspace=256
-      source ~/.vimrc_background
-    endif
-    colorscheme base16-solarized-dark
-
-
-    " write a backup of the current file (with an appended ~) on each write
-    set nobackup
-
-    " Automatically change directory to the file in the current window.
-    " set autochdir
-
-    "ignores the case in search patterns.
-    set ignorecase
-    set smartcase
-
-    " Highlights matching terms when searching.
-    set hlsearch
-
-    " Turns the mouse off.
-    set mouse=r
-
-    " turn on line-numbers.
-    set nu
-    set rnu
-
-    " folding commands.
-    " set foldcolumn=2
-    " set foldmethod=indent
-    " set foldenable
-
-    " tab autocompletion in the command space
-    set wildmenu
-    set wildmode=longest,full
-
-    " Pressing F12 will refresh the syntax highlighting.
-    map  <F12> <Esc>:syntax sync fromstart<CR>:noh<CR>
-
-    " Toggles display of unprintable characters.
-    nnoremap <F5> :set list!<CR>
-
-    " So that the IME does not interfere with VIM.
-    set iminsert=0
-    set imsearch=0
-
-    let $PATH = $PATH . ':' . expand('~/.cabal/bin')
-
-    " allows . (repeat) on visually highlighted lines
-    vnoremap . :normal .<CR>
+" Override base16's colourscheme for solarized-dark (more red hues)
+function! s:base16_customize() abort
+  call Base16hi("Type", g:base16_gui08, "", g:base16_cterm08, "", "", "")
+  call Base16hi("SpellBad", g:base16_gui01, g:base16_gui02, g:base16_cterm01, g:base16_cterm02, "bold,italic", "")
+endfunction
+augroup on_change_colorschema
+  autocmd!
+  autocmd ColorScheme * call s:base16_customize()
+augroup END
+" define the colourscheme using base16
+syn on
+let base16colorspace=256
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 " Doxygen
@@ -527,23 +234,3 @@ nnoremap <leader>k :YcmCompleter GetDoc<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " default options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_error_symbol = '✖'
-let g:syntastic_style_error_symbol = '✖'
-let g:syntastic_warning_symbol = '❢'
-let g:syntastic_style_warning_symbol ='❢'
-let g:syntastic_mode_map = { 'passive_filetypes': ['python']  }
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-" Git gutter
-"""""""""""""""""""""""""""""""""""""""""""""""""""
-set updatetime=100
