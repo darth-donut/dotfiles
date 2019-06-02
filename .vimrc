@@ -26,7 +26,8 @@ call plug#begin('~/.vim/plugged')
     " fuzzy finder
     Plug 'ctrlpvim/ctrlp.vim'
     " auto completer
-    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --rust-completer'}
+    " Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --rust-completer'}
+    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}
     " more % functions
     Plug 'tmhedberg/matchit'
     " auto close tags
