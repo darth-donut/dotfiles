@@ -21,6 +21,13 @@ parse_git_branch() {
 }
 export PS1='\u \[\033[01;32m\][\W]\[\033[m\]\[\033[01;32m\]$(parse_git_branch)\[\033[m\] \$ '
 
+## Bash completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion || {
+    # if not found in /usr/local/etc, try the brew --prefix location
+    [ -f "$(brew --prefix)/etc/bash_completion.d/git-completion.bash" ] && \
+        . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+}
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/harry/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"

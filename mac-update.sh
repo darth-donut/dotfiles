@@ -6,6 +6,9 @@ fi
 if cp ~/.bashrc .bashrc_mac; then
     echo "Updated .bashrc"
 fi
+if cp ~/.bash_profile .bash_profile_mac; then
+    echo "Updated .bash_profile"
+fi
 if cp ~/config .config_mac; then
     echo "Updated config"
 fi
