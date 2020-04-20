@@ -15,5 +15,5 @@ nnoremap [m :action MethodUp<cr>
 nnoremap ]m :action MethodDown<cr>
 nnoremap [c :action VcsShowPrevChangeMarker<cr>
 nnoremap ]c :action VcsShowNextChangeMarker<cr>
-nnoremap [e kddp
+nnoremap [e kddpk
 nnoremap ]e ddp
