@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     " commenting
     Plug 'tomtom/tcomment_vim'
+    " [e ]b [<space> etc. (just try it)
+    Plug 'tpope/vim-unimpaired'
     " . now has repeat on steroids
     Plug 'tpope/vim-repeat'
     " doxygen generator
@@ -71,6 +73,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 set enc=utf-8
 set term=screen-256color
 set t_Co=256
+" copy to system clipboard
+" set clipboard=unnamed
 " Y as y$
 nnoremap Y y$
 " Paste mode

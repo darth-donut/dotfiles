@@ -18,3 +18,6 @@ fi
 if cp ~/.vimrc .vimrc_mac; then
     echo "Updated .vimrc"
 fi
+if cp ~/.ideavimrc .ideavimrc_mac; then
+    echo "Updated .ideavimrc"
+fi
