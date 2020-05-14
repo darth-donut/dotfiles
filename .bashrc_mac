@@ -13,6 +13,11 @@ test -f ${HOME}/.bash_aliases && . $_
 ## ls colours
 export CLICOLOR=1
 
+## So you won't shoot yourself in the foot
+set -o noclobber
+alias mv='mv -i'
+alias cp='cp -i'
+
 ## Base16 Shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \

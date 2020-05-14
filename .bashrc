@@ -147,3 +147,8 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export RSTUDIO_WHICH_R=/home/jiahong/Documents/miniconda3/envs/r/bin/R
+
+## Don't shoot yourself in the foot ------
+set -o noclobber
+alias mv='mv -i'
+alias cp='cp -i'
