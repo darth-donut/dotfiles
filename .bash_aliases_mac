@@ -1,4 +1,4 @@
-alias here="pwd | pbcopy"
+alias here="pwd | xargs echo -n | pbcopy"
 alias python="python3"
 sca() {
     scalac "$1"
