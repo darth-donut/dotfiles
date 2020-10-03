@@ -1,7 +1,7 @@
-# usage: $ here
-alias here="pwd | xargs echo -n | xclip -sel clip"
-# usage: $ open foo.pdf
-alias open="xdg-open"
-# usage: $ copy < foo.txt
-alias copy="xclip -sel clip"
-alias vim=vi
+alias here="pwd | xargs echo -n | pbcopy"
+alias python="python3"
+sca() {
+    scalac "$1"
+    scala "${1%.*}"
+}
+alias weather="curl wttr.in/oxford"

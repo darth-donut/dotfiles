@@ -18,6 +18,9 @@ fi
 if cp ~/.vimrc .vimrc_mac; then
     echo "Updated .vimrc"
 fi
+if cp ~/.vim/UltiSnips/python.snippets UltiSnips; then
+    echo "Updated .python.snippets"
+fi
 if cp ~/.ideavimrc .ideavimrc_mac; then
     echo "Updated .ideavimrc"
 fi
