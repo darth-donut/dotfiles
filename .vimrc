@@ -1,3 +1,32 @@
+" /// @file .vimrc
+" /// @brief -
+" /// @author jiahfong
+" /// @version 0.0.42
+" /// @date 2020-10-03
+"
+" How to install:
+"   Download specified dependenceis below and place this .vimrc file in your
+"   home directory. 
+"
+" Dependencies:
+"   1. cmake (remove YouCompleteMe otherwise)
+"
+" Shortcuts:
+"   * [e ]e         => swap lines
+"   * [b ]b         => switch buffers
+"   * [m ]m         => next method
+"   * ctrl-p        => fuzzy search
+"   * ctrl-n        => multi-cursor
+"   * <leader>-b    => find all references
+"   * gd            => go to definition
+"   * shift-k       => help (doc page)
+"
+" Features:
+"   * NERDTree (:NerdTree)
+"   * auto completion (YCM)
+"   * snippets (UltiSnips + vim-snippets)
+"   * Doxygen
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
