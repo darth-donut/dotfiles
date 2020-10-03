@@ -3,6 +3,8 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   silent !curl -fLo ~/.vim/.ycm_extra_conf.py --create-dirs
     \ https://raw.githubusercontent.com/jiahfong/dotfiles/master/.ycm_extra_conf.py
+  silent !curl -fLo ~/.vim/UltiSnips/python.snippets --create-dirs
+    \ https://raw.githubusercontent.com/jiahfong/dotfiles/master/UltiSnips/python.snippets
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -11,35 +13,61 @@ call plug#begin('~/.vim/plugged')
     """""""""""""""""""""""""""
     " Plugins
     """""""""""""""""""""""""""
+
     " surrounds word with adjective
     Plug 'tpope/vim-surround'
+
     " commenting
     Plug 'tomtom/tcomment_vim'
+
+    " [e ]b [<space> etc. (just try it)
+    Plug 'tpope/vim-unimpaired'
+
     " . now has repeat on steroids
     Plug 'tpope/vim-repeat'
+
     " doxygen generator
     Plug 'vim-scripts/DoxygenToolkit.vim'
+
     " NERDtree
     Plug 'scrooloose/nerdtree'
+
     " laststatus=2
     Plug 'bling/vim-airline'
+
     " fuzzy finder
     Plug 'ctrlpvim/ctrlp.vim'
+
     " auto completer
+    Plug 'Valloric/YouCompleteMe', {'do': './install.py'}
+    Plug 'davidhalter/jedi-vim'
+    Plug 'ervandew/supertab'
+
     " Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --rust-completer'}
-    Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}
+    " Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}
+
+    " Snippets
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+
     " more % functions
     Plug 'tmhedberg/matchit'
+
     " auto close tags
     Plug 'alvan/vim-closetag'
+
     " () pair
     Plug 'jiangmiao/auto-pairs'
+
     " ctrl-n multi changing
     Plug 'terryma/vim-multiple-cursors'
+
     " nav between tmux and vim splits with ctrl-hjkl
     Plug 'christoomey/vim-tmux-navigator'
+
     " cmake completion
     Plug 'jansenm/vim-cmake'
+
     " Themes
     Plug 'chriskempson/base16-vim'
     Plug 'vim-airline/vim-airline-themes'
@@ -71,6 +99,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 set enc=utf-8
 set term=screen-256color
 set t_Co=256
+" copy to system clipboard
+" set clipboard=unnamed
 " Y as y$
 nnoremap Y y$
 " Paste mode
@@ -235,3 +265,37 @@ nnoremap <leader>k :YcmCompleter GetDoc<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " default options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+" https://vim.fandom.com/wiki/Switching_case_of_characters#Twiddle_case
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+            \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
