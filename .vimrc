@@ -72,9 +72,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'davidhalter/jedi-vim'
     Plug 'ervandew/supertab'
 
-    " Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --rust-completer'}
-    " Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer'}
-
     " Snippets
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -192,6 +189,8 @@ set wildmode=longest,full
 nnoremap <F5> :set list!<CR>
 " allows . (repeat) on visually highlighted lines
 vnoremap . :normal .<CR>
+
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 
 " Override base16's colourscheme for solarized-dark (more red hues)
 function! s:base16_customize() abort
