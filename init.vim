@@ -60,7 +60,8 @@ Plug 'rcarriga/nvim-dap-ui'
 
 
 " Themes
-Plug 'savq/melange'
+" Plug 'savq/melange'
+Plug 'Mofiqul/vscode.nvim'
 
 " Comments
 Plug 'tpope/vim-commentary'
@@ -112,9 +113,9 @@ local nvim_lsp = require'lspconfig'
 -- this assumes you've installed the CodeLLDB vscode extension in a linux-like environment
 --  link: https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb
 --  TODO: update the version below! (as of this writing, 1.7.0 doesn't work, try 1.6.10)
-local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.6.10/'
+local extension_path = vim.env.HOME .. '/.vscode-server/extensions/vadimcn.vscode-lldb-1.6.10/'
 local codelldb_path = extension_path .. 'adapter/codelldb'
-local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
 
 local opts = {
     tools = { -- rust-tools options
@@ -230,9 +231,11 @@ set guicursor=i:block
 " nvim-tree: this variable must be enabled for colors to be applied properly
 set termguicolors
 " colourscheme
-colorscheme melange
+" colorscheme melange
+colorscheme vscode
 
-" Default indent settings
+
+"" Default indent settings
 autocmd FileType rust setlocal shiftwidth=2 tabstop=2
 
 command Tree NvimTreeToggle
@@ -335,4 +338,8 @@ command! -nargs=* -bang Reg call RipgrepFzf(<q-args>, <bang>0)
 lua <<EOF
 require("dapui").setup()
 EOF
-map <F9> <cmd> lua require'dap'.toggle_breakpoint() <CR>
+
+map <F12> <cmd> lua require'dap'.toggle_breakpoint()<CR>
+map <F8> <cmd> lua require'dap'.step_into()<CR>
+map <F9> <cmd> lua require'dap'.step_over()<CR>
+map <F10> <cmd> lua require'dapui'.toggle()<CR>
