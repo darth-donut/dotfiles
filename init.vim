@@ -343,3 +343,5 @@ map <F12> <cmd> lua require'dap'.toggle_breakpoint()<CR>
 map <F8> <cmd> lua require'dap'.step_into()<CR>
 map <F9> <cmd> lua require'dap'.step_over()<CR>
 map <F10> <cmd> lua require'dapui'.toggle()<CR>
+
+map <C-p> :Files <CR>
