@@ -85,6 +85,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 " Powerline
 Plug 'nvim-lualine/lualine.nvim'
+" Buffer
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 " Tree-sitter (for better language support)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Gitgutter
@@ -117,10 +119,11 @@ local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-
 local codelldb_path = extension_path .. 'adapter/codelldb'
 local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
 
-local opts = {
+local rt = require("rust-tools")
+rt.setup({
     tools = { -- rust-tools options
         autoSetHints = true,
-        hover_with_actions = true,
+        -- hover_with_actions = true,
         -- inlay_hints = {
         --     show_parameter_hints = false,
         --     parameter_hints_prefix = "",
@@ -137,6 +140,7 @@ local opts = {
 		require("lsp_signature").on_attach({
 		  hint_prefix = " ",
 		}, bufnr)
+		vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
 	end,
         settings = {
             -- to enable rust-analyzer settings visit:
@@ -152,9 +156,7 @@ local opts = {
     dap = {
       adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
     },
-}
-
-require('rust-tools').setup(opts)
+})
 EOF
 
 " Setup Completion
@@ -198,7 +200,7 @@ EOF
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <leader>r    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -315,6 +317,9 @@ nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 
 lua <<EOF
 require('lualine').setup()
+EOF
+lua <<EOF
+require('bufferline').setup{}
 EOF
 
 lua <<EOF
