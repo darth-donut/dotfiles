@@ -21,7 +21,7 @@ If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 }
 
 # You should modify '$Ports' for your applications 
-$Ports = (2222,80,443,8080)
+$Ports = (80,443,8080,8081,9090,3000,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,6379,9121,2222)
 
 # Check WSL ip address
 wsl hostname -I | Set-Variable -Name "WSL"
@@ -34,8 +34,8 @@ if (-not $found) {
 # Remove and Create NetFireWallRule
 Remove-NetFireWallRule -DisplayName 'WSL 2 Firewall Unlock';
 if ($Args[0] -ne "delete") {
-  New-NetFireWallRule -DisplayName 'WSL 2 Firewall Unlock' -Direction Outbound -LocalPort $Ports -Action Allow -Protocol TCP;
-  New-NetFireWallRule -DisplayName 'WSL 2 Firewall Unlock' -Direction Inbound -LocalPort $Ports -Action Allow -Protocol TCP;
+  New-NetFireWallRule -DisplayName 'WSL 2 Firewall Unlock' -Direction Outbound -RemoteAddress 10.0.0.10 -LocalPort $Ports -Action Allow -Protocol TCP;
+  New-NetFireWallRule -DisplayName 'WSL 2 Firewall Unlock' -Direction Inbound -RemoteAddress 10.0.0.10 -LocalPort $Ports -Action Allow -Protocol TCP;
 }
 
 # Add each port into portproxy
