@@ -4,4 +4,5 @@ sca() {
     scalac "$1"
     scala "${1%.*}"
 }
-alias weather="curl wttr.in/oxford"
+alias weather="curl wttr.in/sydney"
+alias vi="nvim"

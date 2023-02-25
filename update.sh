@@ -18,6 +18,9 @@ fi
 if cp ~/.vimrc .; then
     echo "Updated .vimrc"
 fi
+if cp ~/.config/nvim/init.vim init.vim; then
+    echo "Updated init.vim"
+fi
 if cp ~/.vim/UltiSnips/python.snippets UltiSnips; then
     echo "Updated .python.snippets"
 fi

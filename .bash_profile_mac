@@ -1,2 +1,2 @@
 test -f $HOME/.bashrc && . $_
-source "$HOME/.cargo/env"
+. "$HOME/.cargo/env"

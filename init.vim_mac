@@ -1,5 +1,8 @@
 " Dependencies:
 "  1. get rustup installed and install the rust-analyzer component, make sure rust-analyzer is in your path
+"  	a. rustup component add rust-analyzer
+"  	b. it's not installed in ~/.cargo/bin by default, link it:
+"  	c. cd ~/.cargo/bin && ln -s $(rustup which --toolchain stable rust-analyzer)
 "  2. get clippy installed 
 "  3. nerdfont for jetbrains mono https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete
 "  4. inital setup :PlugInstall (treesitter's post install script will fail but that's ok)
