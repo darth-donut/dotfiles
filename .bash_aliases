@@ -1,7 +1,5 @@
-alias here="pwd | xargs echo -n | pbcopy"
-alias python="python3"
-sca() {
-    scalac "$1"
-    scala "${1%.*}"
-}
-alias weather="curl wttr.in/oxford"
+alias weather="curl wttr.in/sydney"
+alias here="pwd | xargs echo -n | clip.exe"
+alias python=python3
+alias open="explorer.exe"
+alias vi=nvim

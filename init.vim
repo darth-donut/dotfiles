@@ -1,5 +1,8 @@
 " Dependencies:
 "  1. get rustup installed and install the rust-analyzer component, make sure rust-analyzer is in your path
+"  	a. rustup component add rust-analyzer
+"  	b. it's not installed in ~/.cargo/bin by default, link it:
+"  	c. cd ~/.cargo/bin && ln -s $(rustup which --toolchain stable rust-analyzer)
 "  2. get clippy installed 
 "  3. nerdfont for jetbrains mono https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete
 "  4. inital setup :PlugInstall (treesitter's post install script will fail but that's ok)
@@ -24,6 +27,8 @@
 "       Reg -> regex search everywhere
 "       Files -> search by filename
 "       Buffers -> shows open buffer
+"       CopyMode -> disables gutter and line numbers for file copying
+"       RevertCopyMode -> reverts CopyMode
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -85,6 +90,8 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 " Powerline
 Plug 'nvim-lualine/lualine.nvim'
+" Buffer
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 " Tree-sitter (for better language support)
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Gitgutter
@@ -198,7 +205,7 @@ EOF
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> gi    <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> ga    <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> <leader>r    <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -222,6 +229,8 @@ nnoremap <silent> ]g <cmd>lua vim.diagnostic.goto_next()<CR>
 " have a fixed column for the diagnostics to appear in
 " this removes the jitter when warnings/errors flow in
 " set signcolumn=yes
+command CopyMode :set signcolumn=no rnu! nu!
+command RevertCopyMode :set signcolumn=yes rnu nu
 
 set incsearch
 set nowrap
@@ -318,6 +327,10 @@ lua <<EOF
 require('lualine').setup()
 EOF
 
+lua << EOF
+require("bufferline").setup{}
+EOF
+
 lua <<EOF
 require('gitsigns').setup()
 EOF
@@ -345,3 +358,4 @@ map <F9> <cmd> lua require'dap'.step_over()<CR>
 map <F10> <cmd> lua require'dapui'.toggle()<CR>
 
 map <C-p> :Files <CR>
+
